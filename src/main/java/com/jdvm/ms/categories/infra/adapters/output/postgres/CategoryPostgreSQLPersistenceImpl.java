@@ -34,14 +34,14 @@ class CategoryPostgreSQLPersistenceImpl implements CategoryPersistence {
 
   @Override
   public Optional<CategoryDomain> getCategoryById(Long id) {
-    log.info(".:: Getting category by id ::.");
+    log.info(".:: Get category by id ::.");
     return categoryRepository.findById(id).map(mapperPersistence::toDomain);
   }
 
   @Override
   public PageDomain<CategoryDomain> getPageableCategory(int page, int quantity,
       String orientation) {
-    log.info("Getting pageable...");
+    log.info("Get pageable...");
     var pageable =
         PageRequest.of(page, quantity, Sort.Direction.fromString(orientation.toUpperCase()), ORDER);
     return mapperPersistence.toPageDomain(categoryRepository.findAll(pageable));
